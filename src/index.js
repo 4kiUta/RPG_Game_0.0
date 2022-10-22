@@ -474,8 +474,11 @@ window.addEventListener("keyup", (event) => {
 //     }
 // })
 
-document.querySelector('#playerSelection').style.display = 'block'
-startgame()
-animate()
+// document.querySelector('#playerSelection').style.display = 'block'
+// startgame()
+// animate()
+
+initBattle()
+animateBattle()
 
 
