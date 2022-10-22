@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+        integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/style.css" />
+
+
+
+
+    <!--  DATA java Script Files DATA-->
+    <script src="./data/battlegrounds.js" defer></script>
+    <script src="./data/colisions.js" defer></script>
+    <script src="./data/heroes.js" defer></script>
+    <script src="./data/attacks.js" defer></script>
+
+    <script src="./data/summons.js" defer></script>
+
+
+
+    <!-- CLASSES  java Script Files  CLASSES -->
+    <script src="./src/Colision.js" defer></script>
+    <script src="./src/Sprite.js" defer></script>
+    <script src="./src/Battle.js" defer></script>
+    <script src="./src/index.js" defer></script>
+
+
+
+
+
+    <!-- GAME TITLE -->
+    <title>A Sleeping Dimension</title>
+
+
+
+</head>
+
+<body>
+
+    <div id="topDiv">
+
+        <div id="overlappingDiv"></div>
+
+        <canvas id="rpgGame"></canvas>
+
+
+
+        <!-- FIRST SCEEN -->
+        <div id="playerSelection">
+            <h1 id="mainTitle">A Sleeping Dimension</h1>
+            <section id="prologueText">
+                <p>This is a story of about two souls separated by diferent Dimension </p>
+                <p>Select the character you want to use and explore the world</p>
+
+            </section>
+            <section id="choosePlayer">
+                <div class="select">
+                    <label>AL</label>
+                    <button class="choose">Al</button>
+                    <img class="image-character-one" src="./img/heroes/alDown.png">
+                </div>
+                <div class="select">
+                    <label>Li</label>
+                    <button class="choose">Li</button>
+                    <img class="image-character-two" src="./img/heroes/liDown.png">
+
+                </div>
+            </section>
+        </div>
+
+
+
+
+
+
+        <!-- BATTLE SCEEN  -->
+        <div id="userInterface">
+            <!-- helth status bar for enemy-->
+            <div id="statusInfoBad">
+                <h1 class="name">Red Hood</h1>
+
+                <div class="health">
+                    <div class="health-damage">
+
+                    </div>
+                    <div id="enemyHealthBar" class="health-full">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- health status bar for user-->
+            <div id="statusInfoGood">
+                <h1 class="name">Flame</h1>
+
+                <div class="health">
+                    <div class="health-damage">
+
+                    </div>
+                    <div id="playerHealthBar" class="health-full">
+
+                    </div>
+
+                </div>
+
+                <div class="level">
+                    <div class="default-lv">
+
+                    </div>
+                    <div id="playerLvBar" class="lv-increase">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="interfaceSelection">
+                <div id="dialgueBox">TESTESTESTEST</div>
+                <div id="attacksBox">
+                    <!-- <button>Takle</button> -->
+                    <!-- <button>Fireball</button> -->
+                    <!-- <button>Attack 3</button>
+                <button>Attack 4</button> -->
+
+                </div>
+                <div id="attackInfo">
+                    <h1 id="attackType">Attack type</h1>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</body>
+
+</html>
