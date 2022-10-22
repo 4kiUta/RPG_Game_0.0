@@ -75,7 +75,6 @@ const keys = {
 
 
 
-let test;
 let player;
 function startgame() {
     document.querySelectorAll(".choose").forEach((button) => {
@@ -209,7 +208,7 @@ function animate() {
                     window.cancelAnimationFrame(animationId); // stop the animation
 
 
-                    console.log("BATTLE START HERE!!! ");
+                    // console.log("BATTLE START HERE!!! ");
                     // audio.Map.stop() // stop the background music
                     // audio.initBattle.play() // start the music for battle start 
                     // audio.battle.play() // keep the music for the battle rooling !!
@@ -277,7 +276,6 @@ function animate() {
                     } // creates a clone of the orginal without overwritting 
                 })) {
 
-                    console.log("colliding");
                     moving = false;
                     break; // as soon as we coolide we breake the loop
                 }
@@ -308,7 +306,6 @@ function animate() {
                         }
                     } // creates a clone of the orginal without overwritting 
                 })) {
-                    console.log("colliding");
                     moving = false;
                     break; // as soon as we coolide we breake the loop
                 }
@@ -336,7 +333,6 @@ function animate() {
                         }
                     } // creates a clone of the orginal without overwritting 
                 })) {
-                    console.log("colliding");
                     moving = false;
                     break; // as soon as we coolide we breake the loop
                 }
@@ -406,7 +402,6 @@ window.addEventListener("keydown", (event) => {
     if (event.key === "w") {
         lastKey = 'w';
         keys.w.pressed = true;
-        console.log("wwwww")
     }
     if (event.key === "s") {
         lastKey = 's';

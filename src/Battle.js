@@ -71,7 +71,7 @@ function initBattle() {
                 queue.push(() => {
                     enemyMoster.faint()
                     ourMonster.experience += enemyMoster.experience
-                    console.log(ourMonster.experience)
+
                     gsap.to(".lv-increase", {
                         width: ourMonster.experience + '%'
                     })
@@ -174,7 +174,6 @@ function animateBattle() {
 // ------------------------- TRIGGER THE DIALOGO BOX EVENTS WIT HE QUE -------------------------- //
 document.querySelector("#dialgueBox").addEventListener("click", (e) => {
     if (queue.length > 0) {
-        console.log(queue)
         queue[0]()
         queue.shift()
     } else {
