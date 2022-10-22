@@ -176,7 +176,7 @@ function animate() {
 
 
 
-    
+
         // ----------------  BATTLE AND CANCEL MAIN ANIMATION WITH GSAP  ------------ TRIGGERS THE BATTLE SCENARIO 
         if (battle.initiated) return // if the battle is one we can no long run what is bellow
 
@@ -463,18 +463,19 @@ window.addEventListener("keyup", (event) => {
 
 
 
-let clicked = false;
-addEventListener("click", () => {
-    if (!clicked) {
-        document.querySelector('#playerSelection').style.display = 'block'
-        startgame()
-        animate()
-        clicked = true;
+// let clicked = false;
+// addEventListener("click", () => {
+//     if (!clicked) {
+//         document.querySelector('#playerSelection').style.display = 'block'
+//         startgame()
+//         animate()
+//         clicked = true;
 
-    }
-})
+//     }
+// })
 
-
-//  
+document.querySelector('#playerSelection').style.display = 'block'
+startgame()
+animate()
 
 
