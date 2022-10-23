@@ -467,22 +467,22 @@ window.addEventListener("keyup", (event) => {
 
 
 
-// let clicked = false;
-// addEventListener("click", () => {
-//     if (!clicked) {
-//         document.querySelector('#playerSelection').style.display = 'block'
-//         startgame()
-//         animate()
-//         clicked = true;
+let clicked = false;
+addEventListener("click", () => {
+    if (!clicked) {
+        document.querySelector('#playerSelection').style.display = 'block'
+        startgame()
+        animate()
+        clicked = true;
 
-//     }
-// })
+    }
+})
 
-// document.querySelector('#playerSelection').style.display = 'block'
-// startgame()
-// animate()
+document.querySelector('#playerSelection').style.display = 'block'
+startgame()
+animate()
 
-initBattle()
-animateBattle()
+// initBattle()
+// animateBattle()
 
 
