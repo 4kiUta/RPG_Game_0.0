@@ -137,14 +137,12 @@ label {
     width: 150px;
     display: flex;
     justify-content: space-between;
-    margin: 0px;
+    margin-bottom: 4px;
 }
 
 .currentLevel {
     margin: 0px;
     font-size: 12px;
-
-
 }
 
 
@@ -315,7 +313,7 @@ label {
 
 
 
-@media (min-width: 350px) and (max-width: 750px) {
+@media (min-width: 350px) and (max-width: 699px) {
 
     #mainTitle {
         text-align: center;
@@ -360,7 +358,7 @@ label {
         width: 100px;
         height: 14px;
         position: absolute;
-        bottom: 110px;
+        bottom: 120px;
         right: 20px;
         border: 2px black;
         border-style: outset;
@@ -375,7 +373,7 @@ label {
         width: 100px;
         height: 10px;
         position: absolute;
-        bottom: 110px;
+        bottom: 120px;
         left: 10px;
         border: 2px black;
         border-style: outset;
@@ -390,7 +388,6 @@ label {
         width: 88px;
         display: flex;
         justify-content: space-between;
-        margin: 0px;
     }
 
     .name {
@@ -507,7 +504,7 @@ label {
         width: 180px;
         height: 23px;
         position: absolute;
-        bottom: 245px;
+        bottom: 215px;
         left: 60px;
         border: 2px black;
         border-style: outset;
@@ -529,7 +526,7 @@ label {
         width: 180px;
         height: 30px;
         position: absolute;
-        bottom: 240px;
+        bottom: 215px;
         right: 90px;
         border: 2px black;
         border-style: outset;

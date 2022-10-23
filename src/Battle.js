@@ -14,7 +14,7 @@ const battleBackground = new Sprite({
 
 // --------------------------- BATTLE SCENARIO  (CHANGE THE IMAGE HERE ) --------------------- //
 
-const ourMonster = new Summon(summons.Emby)
+const ourMonster = new Summon(summons.RedHood)
 
 let enemyMoster;
 let renderedSprites;
@@ -22,22 +22,32 @@ let queue = [];
 
 
 function initBattle() {
+
+    // Monster Availuable --> make it more effecient 
+    let a = new Summon(summons.Emby2)
+    let b = new Summon(summons.Draggle)
+
+    const monsterColection = [b, a]
+    const enemyMoster = monsterColection[Math.floor(Math.random() * monsterColection.length)]
+
+
+
     document.querySelector("#userInterface").style.display = 'block'
     document.querySelector("#dialgueBox").style.display = 'none'
     document.querySelector("#enemyHealthBar").style.width = '100%'
+    document.querySelector('#statusInfoBad .currentLevel').innerHTML = enemyMoster.level;
+    document.querySelector('#statusInfoGood .currentLevel').innerHTML = ourMonster.level
     document.querySelector("#playerHealthBar").style.width = ourMonster.health + '%'
     document.querySelector("#attacksBox").replaceChildren()
 
 
-    // Monster Availuable --> make it more effecient 
-    a = new Summon(summons.RedHood)
-    b = new Summon(summons.Draggle)
-    const monsterColection = [b]
-    enemyMoster = monsterColection[Math.floor(Math.random() * monsterColection.length)]
 
 
     renderedSprites = [enemyMoster, ourMonster]
     queue = []
+
+
+    document.querySelector("#statusInfoBad .name").innerHTML = enemyMoster.name;
 
     ourMonster.attacks.forEach((attack) => {
         const button = document.createElement("button");
@@ -60,20 +70,24 @@ function initBattle() {
 
             const selectedAttack = attacks[e.currentTarget.innerHTML]; // get the attack that we want 
 
+            let originalSummonHealth = ourMonster.health
 
-            let finalHealth = ourMonster.attack({
+            ourMonster.attack({
                 attack: selectedAttack,
                 recipient: enemyMoster,
                 renderedSprites
             })
 
+            let finalSummonHealth = ourMonster.health
+
+            const result = finalSummonHealth - originalSummonHealth
 
             // ----------------------------- OUR MONSTER ATTACK OUR MONSTER ATTACK  OUR MONSTER ATTACK !!!---------------------- //
             // -------------- SEND TO THE QUE SOME INFORMATION ABOUT THE ATTACK -------------------- //
 
             if (selectedAttack.type === "Healing") {
                 queue.push(() => {
-                    document.querySelector("#dialgueBox").innerHTML = ourMonster.name + " recovered " + finalHealth + " points of life"
+                    document.querySelector("#dialgueBox").innerHTML = ourMonster.name + " recovered " + result + " points of life"
                 })
             } else {
                 queue.push(() => {
@@ -90,9 +104,35 @@ function initBattle() {
                     enemyMoster.faint()
                     ourMonster.experience += enemyMoster.experience
 
+
+                    // -----------------------------LEVEL UP ---------------------- //
+
+
+                    if (ourMonster.experience >= 100) {
+                        ourMonster.experience = 100;
+                    }
                     gsap.to(".lv-increase", {
-                        width: ourMonster.experience + '%'
+                        width: ourMonster.experience + '%',
+                        onComplete: () => {
+
+                            if (ourMonster.experience === 100) {
+                                ourMonster.level += 1;
+                                ourMonster.experience = 0;
+                                document.querySelector("#dialgueBox").innerHTML = "Level Up"
+
+                                gsap.to(".lv-increase", {
+                                    width: 0,
+                                    opacity: 0,
+                                    duration: 2,
+                                    onComplete: () => {
+                                        document.querySelector('#statusInfoGood .currentLevel').innerHTML = ourMonster.level
+                                    }
+                                })
+                            }
+                        }
                     })
+
+
 
                 })
 
@@ -105,7 +145,8 @@ function initBattle() {
                             window.cancelAnimationFrame(battleAnimationId)
                             animate()
                             document.querySelector("#userInterface").style.display = 'none'
-
+                            document.querySelector("#attackInfo").style.cssText = 'display:flex;'
+                            document.querySelector("#attacksBox").style.cssText = 'display:grid;'
                             gsap.to("#overlappingDiv", {
                                 opacity: 0
                             })
@@ -124,6 +165,7 @@ function initBattle() {
             // RANDOM ATTACK FROM ENEMY 
             const randomAttack = enemyMoster.attacks[Math.floor(Math.random() * enemyMoster.attacks.length)]
 
+            let originaEnemyHealth = enemyMoster.health
 
             queue.push(() => {
                 enemyMoster.attack({
@@ -132,19 +174,21 @@ function initBattle() {
                     renderedSprites
                 })
 
+                let finalEnemyHealth = enemyMoster.health
 
+                const enemyResult = finalEnemyHealth - originaEnemyHealth
 
-            // -------------- SEND TO THE QUE SOME INFORMATION ABOUT THE ATTACK -------------------- //
+                // -------------- SEND TO THE QUE SOME INFORMATION ABOUT THE ATTACK -------------------- //
 
-            if (selectedAttack.type === "Healing") {
-                queue.push(() => {
-                    document.querySelector("#dialgueBox").innerHTML = enemyMoster.name + " recovered " + finalHealth + " points of life"
-                })
-            } else {
-                queue.push(() => {
-                    document.querySelector("#dialgueBox").innerHTML = enemyMoster.name + " did " + selectedAttack.damage + " damage"
-                })
-            }
+                if (randomAttack.type === "Healing") {
+                    queue.push(() => {
+                        document.querySelector("#dialgueBox").innerHTML = enemyMoster.name + " recovered " + enemyResult + " points of life"
+                    })
+                } else {
+                    queue.push(() => {
+                        document.querySelector("#dialgueBox").innerHTML = enemyMoster.name + " did " + randomAttack.damage + " damage"
+                    })
+                }
 
                 // -----------------------------WE DEADE  ---------------------- //
                 if (ourMonster.health <= 0) {
@@ -158,6 +202,8 @@ function initBattle() {
                                 window.cancelAnimationFrame(battleAnimationId)
                                 animate()
                                 document.querySelector("#userInterface").style.display = 'none'
+                                document.querySelector("#attackInfo").style.cssText = 'display:flex;'
+                                document.querySelector("#attacksBox").style.cssText = 'display:grid;'
                                 gsap.to("#overlappingDiv", {
                                     opacity: 0
                                 })

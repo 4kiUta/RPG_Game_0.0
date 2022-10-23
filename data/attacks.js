@@ -33,7 +33,7 @@ const attacks = {
     Cure: {
         name: "Cure",
         damage: 0,
-        restore: 25,
+        restore: 35,
         type: 'Healing',
         color: 'rgb(204,255,204)',
         dscr: 'Restore 25 points of life to a single target'

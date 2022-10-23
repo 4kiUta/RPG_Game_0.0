@@ -124,7 +124,8 @@ class Summon extends Sprite {
         isEnemy = false,
         name,
         attacks,
-        experience
+        experience,
+        level
     }) {
         super({
             position,
@@ -141,6 +142,7 @@ class Summon extends Sprite {
         this.name = name;
         this.attacks = attacks;
         this.experience = experience
+        this.level = level
     }
 
 
@@ -178,6 +180,7 @@ class Summon extends Sprite {
 
         if (!this.isEnemy && attack.type === "Healing") {
             healthBar = "#playerHealthBar";
+            
         } else if (this.isEnemy && attack.type === "Healing") {
             healthBar = "#enemyHealthBar";
 
@@ -185,7 +188,6 @@ class Summon extends Sprite {
             healthBar = "#playerHealthBar"
         }
 
-        console.log(healthBar)
         // ROTATION CASE ITS ENEMY OR PLAYER 
         let rotation = 4.5
         if (this.isEnemy) {
@@ -200,11 +202,9 @@ class Summon extends Sprite {
         // update the health of our summon
         let life = this.health;
 
-        this.health = this.health + attack.restore
-        if (this.health > 100) this.health = 100
+        this.health += attack.restore
 
-
-
+        if (this.health > 100) this.health = 100;
 
         // --------------------------------------------- ATTACK SELECTIONS ---------------------------------------------------- //
 
@@ -311,7 +311,7 @@ class Summon extends Sprite {
             case "ComboSlice":
                 // audio.initFireBall.play()
                 const comboSliceImage = new Image();
-                comboSliceImage.src = "./img/summons/draggleSprite.png"
+                comboSliceImage.src = "./img/attacks/comboslice.png"
 
                 const comboslice = new Sprite({
                     position: {
@@ -320,7 +320,7 @@ class Summon extends Sprite {
                     },
                     image: comboSliceImage,
                     frames: {
-                        max: 4,
+                        max: 26,
                         hold: 3
                     },
                     animate: true
@@ -404,10 +404,8 @@ class Summon extends Sprite {
 
 
                 })
-                return this.health - life
-
-
-
+                
+                break;
         }
 
 

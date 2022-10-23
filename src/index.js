@@ -464,6 +464,57 @@ window.addEventListener("keyup", (event) => {
 
 });
 
+let touchedX;
+let touchedY;
+
+canvas.addEventListener("touchstart", (ev)=> {
+    touchedX = ev.touches[0].pageX
+    touchedY = ev.touches[0].pageY
+})
+
+
+canvas.addEventListener("touchmove", (event)=>{
+    if(event.touches){
+        let playerX = event.touches[0].pageX - canvas.offsetLeft //- player.width / 2;
+        let playerY = event.touches[0].pageY - canvas.offsetTop //- player.width / 2;
+        event.preventDefault();
+
+
+        if (playerX > touchedX){
+            lastKey = "d"
+            keys.d.pressed = true
+            console.log("move right")
+
+        } else if (playerX < touchedX) {
+            lastKey = "a"
+            keys.a.pressed = true
+            console.log("move left")
+
+        } else if (playerY < touchedY) {
+            lastKey = "w"
+            keys.w.pressed = true;
+            console.log("moved Up")
+
+        } else if (playerY > touchedY) {
+            lastKey = "s"
+            keys.s.pressed = true
+            console.log("move down")
+        }
+
+    }
+
+})
+
+
+canvas.addEventListener('touchend', (event) => {
+    keys.w.pressed = false;
+    keys.s.pressed = false
+    keys.a.pressed = false
+    keys.d.pressed = false
+})
+
+
+
 
 
 
@@ -478,9 +529,7 @@ addEventListener("click", () => {
     }
 })
 
-document.querySelector('#playerSelection').style.display = 'block'
-startgame()
-animate()
+
 
 // initBattle()
 // animateBattle()

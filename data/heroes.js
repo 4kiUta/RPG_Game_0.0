@@ -11,7 +11,6 @@ const playerLeftImage = new Image()
 playerLeftImage.src = "./img/heroes/alLeft.png"
 
 
-
 // HERO 2 images
 const player2DownImage = new Image()
 player2DownImage.src = "./img/heroes/liDown.png";
