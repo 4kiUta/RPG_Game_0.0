@@ -165,13 +165,24 @@ label {
     background-color: transparent;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 20px;
+    /* border-radius: 20px; */
 }
 
 .whatAttack:hover {
     background-color: lightblue;
 }
 
+
+
+#attacksBox>button:nth-child(odd) {
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+#attacksBox>button:nth-child(even) {
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
 
 #attacksBox {
     width: 66.66%;
@@ -313,7 +324,7 @@ label {
 
 
 
-@media (min-width: 350px) and (max-width: 699px) {
+@media (min-width: 350px) and (max-width: 599px) {
 
     #mainTitle {
         text-align: center;
@@ -458,8 +469,20 @@ label {
         background-color: transparent;
         cursor: pointer;
         font-size: 7px;
-        border-radius: 20px;
+        /* border-radius: 20px; */
     }
+
+
+    #attacksBox>button:nth-child(odd) {
+        border-bottom-left-radius: 20px;
+        border-top-left-radius: 20px;
+    }
+
+    #attacksBox>button:nth-child(even) {
+        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
 
     #attackType {
         font-size: 8px;
@@ -483,7 +506,7 @@ label {
 }
 
 
-@media (min-width: 700px) and (max-width: 1000px) {
+@media (min-width: 600px) and (max-width: 790px) {
     #interfaceSelection {
         display: flex;
         flex-direction: row-reverse;
@@ -535,4 +558,61 @@ label {
         opacity: 0.5;
     }
 
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+    #statusInfoGood {
+        background-color: white;
+        width: 180px;
+        height: 30px;
+        position: absolute;
+        bottom: 230px;
+        right: 90px;
+        border: 2px black;
+        border-style: outset;
+        padding: 2px;
+        border-radius: 5px;
+        opacity: 0.5;
+    }
+
+    #statusInfoBad {
+        background-color: white;
+        width: 180px;
+        height: 23px;
+        position: absolute;
+        bottom: 230px;
+        left: 60px;
+        border: 2px black;
+        border-style: outset;
+        padding: 2px;
+        border-radius: 5px;
+        opacity: 0.5;
+    }
+
+    #interfaceSelection {
+        display: flex;
+        flex-direction: row-reverse;
+        background-color: none;
+        width: 620px;
+        height: 60px;
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+        border: 2px black;
+        border-radius: 20px;
+        border-style: outset;
+    }
+
+    #attackType {
+        font-size: 12px;
+    }
+
+
+    .summonInfo {
+        height: 10px;
+        width: 165px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 7px;
+    }
 }
