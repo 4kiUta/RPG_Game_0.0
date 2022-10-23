@@ -169,10 +169,13 @@ class Summon extends Sprite {
     // -------------------------------------------- LEVEL UP FUNCTION -------------------------------------------- //  
 
 
-    addAttack() {
+    addAttack(level) {
 
-        if (this.level === 2) {
+        if (level === 2) {
             this.attacks.push(attacks.Cure)
+            return
+        } else {
+            return
         }
     }
 
@@ -192,7 +195,7 @@ class Summon extends Sprite {
 
         if (!this.isEnemy && attack.type === "Healing") {
             healthBar = "#playerHealthBar";
-            
+
         } else if (this.isEnemy && attack.type === "Healing") {
             healthBar = "#enemyHealthBar";
 
@@ -209,8 +212,8 @@ class Summon extends Sprite {
         // update the health of enemy
         recipient.health -= attack.damage;
 
-    
-    
+
+
         // update the health of our summon
         let life = this.health;
 
@@ -417,7 +420,7 @@ class Summon extends Sprite {
 
 
                 })
-                
+
                 break;
         }
 

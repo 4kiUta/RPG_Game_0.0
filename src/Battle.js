@@ -16,6 +16,7 @@ const battleBackground = new Sprite({
 
 const ourMonster = new Summon(summons.RedHood)
 
+let a, b;
 let enemyMoster;
 let renderedSprites;
 let queue = [];
@@ -23,15 +24,21 @@ let queue = [];
 
 function initBattle() {
 
+
     // Monster Availuable --> make it more effecient 
-    let a = new Summon(summons.Emby2)
-    let b = new Summon(summons.Draggle)
+    // make a copy of the spown monster
+    const monsterOne = JSON.parse(JSON.stringify(summons.Emby2))
+    const monsterTwo = JSON.parse(JSON.stringify(summons.Draggle))
+
+    a = new Summon(monsterOne)
+    b = new Summon(monsterTwo)
 
     const monsterColection = [b, a]
     const enemyMoster = monsterColection[Math.floor(Math.random() * monsterColection.length)]
 
+    console.log(enemyMoster.position.y)
 
-
+    document.querySelector(".lv-increase").style.opacity = '1'
     document.querySelector("#userInterface").style.display = 'block'
     document.querySelector("#dialgueBox").style.display = 'none'
     document.querySelector("#enemyHealthBar").style.width = '100%'
@@ -107,25 +114,33 @@ function initBattle() {
 
                     // -----------------------------LEVEL UP ---------------------- //
 
+
+                    let extraExp = ourMonster.experience - 100
                     if (ourMonster.experience >= 100) {
                         ourMonster.experience = 100;
+                        ourMonster.level += 1;
+                        ourMonster.addAttack(ourMonster.level)
+
                     }
 
                     gsap.to(".lv-increase", {
                         width: ourMonster.experience + '%',
                         onComplete: () => {
                             if (ourMonster.experience === 100) {
-                                ourMonster.level += 1;
-                                ourMonster.addAttack()
-                                ourMonster.experience = 0;
+                                ourMonster.experience = extraExp;
                                 document.querySelector("#dialgueBox").innerHTML = "Level Up"
 
                                 gsap.to(".lv-increase", {
                                     width: 0,
                                     opacity: 0,
-                                    duration: 2,
+                                    duration: 1,
                                     onComplete: () => {
-                                        document.querySelector('#statusInfoGood .currentLevel').innerHTML = ourMonster.level
+                                        document.querySelector('#statusInfoGood .currentLevel').innerHTML = ourMonster.level;
+                                        gsap.to(".lv-increase", {
+                                            width: extraExp,
+                                            opacity: 1,
+                                            duration: 2
+                                        })
                                     }
                                 })
                             }
