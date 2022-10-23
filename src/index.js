@@ -466,31 +466,41 @@ window.addEventListener("keyup", (event) => {
 
 let touchedX;
 let touchedY;
-
-canvas.addEventListener("touchstart", (ev)=> {
+canvas.addEventListener("touchstart", (ev) => {
     touchedX = ev.touches[0].pageX
     touchedY = ev.touches[0].pageY
 })
 
-
-canvas.addEventListener("touchmove", (event)=>{
-    if(event.touches){
-        let playerX = event.touches[0].pageX - canvas.offsetLeft //- player.width / 2;
-        let playerY = event.touches[0].pageY - canvas.offsetTop //- player.width / 2;
+let playerX;
+let playerY;
+canvas.addEventListener("touchmove", (event) => {
+    if (event.touches) {
+        playerX = event.touches[0].pageX - canvas.offsetLeft //- player.width / 2;
+        playerY = event.touches[0].pageY - canvas.offsetTop //- player.width / 2;
         event.preventDefault();
 
+        // console.log("X" , Math.abs(playerX - touchedX))
+        // console.log("Y", Math.abs(playerY - touchedY))
+    }
 
-        if (playerX > touchedX){
+
+    if (Math.abs(playerX - touchedX) > Math.abs(playerY - touchedY)) {
+        (Math.abs(playerX - touchedX) > 50) ? run = true : run = false;
+
+        if (playerX > touchedX) {
             lastKey = "d"
             keys.d.pressed = true
             console.log("move right")
-
         } else if (playerX < touchedX) {
             lastKey = "a"
             keys.a.pressed = true
             console.log("move left")
 
-        } else if (playerY < touchedY) {
+        }
+    } else {
+        (Math.abs(playerY - touchedY) > 50) ? run = true : run = false;
+
+        if (playerY < touchedY) {
             lastKey = "w"
             keys.w.pressed = true;
             console.log("moved Up")
@@ -502,6 +512,8 @@ canvas.addEventListener("touchmove", (event)=>{
         }
 
     }
+
+
 
 })
 
