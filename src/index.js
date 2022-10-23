@@ -63,7 +63,7 @@ const keys = {
     a: {
         pressed: false
     },
-    r: {
+    Shift: {
         pressed: false
     }
 }
@@ -419,6 +419,15 @@ window.addEventListener("keydown", (event) => {
     }
 
     if (event.key && pressShift.shift) {
+
+        if (event.key !== "Shift") {
+            lastKey = event.key.toLowerCase();
+        } else {
+            lastKey = event.key
+        }
+
+        keys[lastKey].pressed = true
+
         run = true;
 
     }
@@ -427,7 +436,8 @@ window.addEventListener("keydown", (event) => {
 
 window.addEventListener("keyup", (event) => {
 
-    pressShift.shift = false
+    pressShift.shift = false;
+    run = false
 
     if (event.key === "w") {
         keys.w.pressed = false;
@@ -444,11 +454,10 @@ window.addEventListener("keyup", (event) => {
         keys.d.pressed = false
     }
     if (event.key === "Shift") {
-        keys.d.pressed = false
-        keys.a.pressed = false
-        keys.s.pressed = false
         keys.w.pressed = false;
-        run = false;
+        keys.s.pressed = false
+        keys.a.pressed = false
+        keys.d.pressed = false
 
     }
 
