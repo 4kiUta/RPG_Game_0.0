@@ -107,16 +107,16 @@ function initBattle() {
 
                     // -----------------------------LEVEL UP ---------------------- //
 
-
                     if (ourMonster.experience >= 100) {
                         ourMonster.experience = 100;
                     }
+
                     gsap.to(".lv-increase", {
                         width: ourMonster.experience + '%',
                         onComplete: () => {
-
                             if (ourMonster.experience === 100) {
                                 ourMonster.level += 1;
+                                ourMonster.addAttack()
                                 ourMonster.experience = 0;
                                 document.querySelector("#dialgueBox").innerHTML = "Level Up"
 

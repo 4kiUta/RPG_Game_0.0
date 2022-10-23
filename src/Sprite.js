@@ -166,6 +166,18 @@ class Summon extends Sprite {
     }
 
 
+    // -------------------------------------------- LEVEL UP FUNCTION -------------------------------------------- //  
+
+
+    addAttack() {
+
+        if (this.level === 2) {
+            this.attacks.push(attacks.Cure)
+        }
+    }
+
+
+
     // -------------------------------------------- ATTACK FUNCTION -------------------------------------------- //  
 
 
@@ -379,7 +391,7 @@ class Summon extends Sprite {
                     },
                     image: healingImage,
                     frames: {
-                        max: 4,
+                        max: this.frames.max,
                         hold: 3
                     },
                     animate: true
@@ -389,6 +401,7 @@ class Summon extends Sprite {
 
                 gsap.to(this, {
                     opacity: 0,
+                    duration: 3,
 
                     onComplete: () => {
                         gsap.to(healthBar, {
