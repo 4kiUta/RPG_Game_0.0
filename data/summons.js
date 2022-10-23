@@ -8,7 +8,7 @@ const summons = {
             y: 100
         },
         image: {
-            src : './img/summons/redHood.png'
+            src: './img/summons/redHood.png'
         },
         frames: {
             max: 18,
@@ -26,7 +26,7 @@ const summons = {
             y: 300
         },
         image: {
-            src : './img/summons/draggleSprite.png'
+            src: './img/summons/draggleSprite.png'
         },
         frames: {
             max: 4,
@@ -35,21 +35,21 @@ const summons = {
         animate: true,
         isEnemy: true,
         name: "Draggle",
-        attacks: [attacks.Tackle], // attacks for this character ...
+        attacks: [attacks.Cure], // attacks for this character ...
         experience: 30
     },
 
 
 
 
-// ----------------- OUR MONSTER ----------------
+    // ----------------- OUR MONSTER ----------------
     Emby: {
         position: {
             x: 788,
             y: 300
         },
         image: {
-            src : './img/summons/embySprite.png'
+            src: './img/summons/embySprite.png'
         },
         frames: {
             max: 4,
@@ -58,7 +58,7 @@ const summons = {
         animate: true,
         isEnemy: false,
         name: "Good Guy",
-        attacks: [attacks.Tackle, attacks.Fireball],
+        attacks: [attacks.Tackle, attacks.Fireball, attacks.ComboSlice, attacks.Cure, attacks.ComboSlice, attacks.ComboSlice],
         experience: 0
 
     }

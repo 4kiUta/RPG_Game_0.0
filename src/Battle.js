@@ -35,18 +35,16 @@ function initBattle() {
     const monsterColection = [b]
     enemyMoster = monsterColection[Math.floor(Math.random() * monsterColection.length)]
 
-    // ourMonster = new Summon(summons.Emby)
 
     renderedSprites = [enemyMoster, ourMonster]
-
     queue = []
 
     ourMonster.attacks.forEach((attack) => {
-
         const button = document.createElement("button");
+
         button.setAttribute("class", "whatAttack");
         button.innerHTML = attack.name
-        document.querySelector("#attacksBox").append(button)
+        document.querySelector("#attacksBox").append(button);
     })
 
 
@@ -56,13 +54,33 @@ function initBattle() {
 
     document.querySelectorAll(".whatAttack").forEach((button) => {
         button.addEventListener("click", (e) => {
+
+            document.querySelector("#attackInfo").style.display = 'none'
+            document.querySelector("#attacksBox").style.display = 'none'
+
             const selectedAttack = attacks[e.currentTarget.innerHTML]; // get the attack that we want 
 
-            ourMonster.attack({
+
+            let finalHealth = ourMonster.attack({
                 attack: selectedAttack,
                 recipient: enemyMoster,
                 renderedSprites
             })
+
+
+            // ----------------------------- OUR MONSTER ATTACK OUR MONSTER ATTACK  OUR MONSTER ATTACK !!!---------------------- //
+            // -------------- SEND TO THE QUE SOME INFORMATION ABOUT THE ATTACK -------------------- //
+
+            if (selectedAttack.type === "Healing") {
+                queue.push(() => {
+                    document.querySelector("#dialgueBox").innerHTML = ourMonster.name + " recovered " + finalHealth + " points of life"
+                })
+            } else {
+                queue.push(() => {
+                    document.querySelector("#dialgueBox").innerHTML = ourMonster.name + " did " + selectedAttack.damage + " damage"
+                })
+            }
+
 
 
             // -----------------------------DEAD ENEMY ---------------------- //
@@ -101,11 +119,11 @@ function initBattle() {
             }
 
 
-
-
-            // ----------------------------- CREATING THE QUUE OF EVENTS ---------------------- //
+            // ----------------------------- ENEMY ATTACK ENEMY ATTACK  ENEMY ATTACK !!!---------------------- //
+            // ----------------------------- CREATING THE QUUE OF EVENTS  ENEMY ATTACK !!!---------------------- //
             // RANDOM ATTACK FROM ENEMY 
             const randomAttack = enemyMoster.attacks[Math.floor(Math.random() * enemyMoster.attacks.length)]
+
 
             queue.push(() => {
                 enemyMoster.attack({
@@ -114,7 +132,21 @@ function initBattle() {
                     renderedSprites
                 })
 
-                // if WE DIE AFTER THE ATTACK OF THE ENEMY!
+
+
+            // -------------- SEND TO THE QUE SOME INFORMATION ABOUT THE ATTACK -------------------- //
+
+            if (selectedAttack.type === "Healing") {
+                queue.push(() => {
+                    document.querySelector("#dialgueBox").innerHTML = enemyMoster.name + " recovered " + finalHealth + " points of life"
+                })
+            } else {
+                queue.push(() => {
+                    document.querySelector("#dialgueBox").innerHTML = enemyMoster.name + " did " + selectedAttack.damage + " damage"
+                })
+            }
+
+                // -----------------------------WE DEADE  ---------------------- //
                 if (ourMonster.health <= 0) {
                     queue.push(() => {
                         ourMonster.faint()
@@ -140,12 +172,15 @@ function initBattle() {
                     return // to stop 
                 }
             })
+
+
         })
+
 
         // event listener for info about attacks 
         button.addEventListener("mouseenter", (e) => { // when we over the buttons 
             const hoverAttack = attacks[e.currentTarget.innerHTML]; // get the attack that we want 
-            document.querySelector("#attackType").innerHTML = hoverAttack.type
+            document.querySelector("#attackType").innerHTML = hoverAttack.dscr
             document.querySelector("#attackType").style.color = hoverAttack.color
 
 
@@ -178,6 +213,9 @@ document.querySelector("#dialgueBox").addEventListener("click", (e) => {
         queue.shift()
     } else {
         e.currentTarget.style.display = "none";
+        document.querySelector("#attackInfo").style.cssText = 'display:flex;'
+        document.querySelector("#attacksBox").style.cssText = 'display:grid;' // cssText --> allows us to pass a css text to change the style of an DOM object 
+
     }
 
 })

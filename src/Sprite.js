@@ -1,6 +1,7 @@
 
 class Sprite {
     constructor({
+        name,
         position,
         velocity,
         image,
@@ -11,6 +12,7 @@ class Sprite {
 
     }) { // we can pass to the custrouctur a object this way we dont need to remember the order of the parameter, we have just one object 
 
+        this.name = name;
         this.position = position;
         this.image = new Image();
         this.frames = { ...frames, val: 0, elapsed: 0 };
@@ -173,18 +175,33 @@ class Summon extends Sprite {
 
 
         let healthBar = "#enemyHealthBar";
-        if (this.isEnemy) {
+
+        if (!this.isEnemy && attack.type === "Healing") {
+            healthBar = "#playerHealthBar";
+        } else if (this.isEnemy && attack.type === "Healing") {
+            healthBar = "#enemyHealthBar";
+
+        } else if (this.isEnemy) {
             healthBar = "#playerHealthBar"
         }
 
+        console.log(healthBar)
         // ROTATION CASE ITS ENEMY OR PLAYER 
         let rotation = 4.5
         if (this.isEnemy) {
             rotation = -2.2
         }
 
-        // update the health 
+        // update the health of enemy
         recipient.health -= attack.damage;
+
+    
+    
+        // update the health of our summon
+        let life = this.health;
+
+        this.health = this.health + attack.restore
+        if (this.health > 100) this.health = 100
 
 
 
@@ -195,9 +212,9 @@ class Summon extends Sprite {
 
 
         switch (attack.name) {
+
+
             case "Tackle":
-
-
                 const timeLine = gsap.timeline()
 
                 let movementDistance = - 20;
@@ -291,10 +308,11 @@ class Summon extends Sprite {
             // --------------------------------------------- ATTACK 3 ---------------------------------------------------- //
 
 
-            case "Combo Slice":
+            case "ComboSlice":
                 // audio.initFireBall.play()
                 const comboSliceImage = new Image();
                 comboSliceImage.src = "./img/summons/draggleSprite.png"
+
                 const comboslice = new Sprite({
                     position: {
                         x: this.position.x,
@@ -302,8 +320,8 @@ class Summon extends Sprite {
                     },
                     image: comboSliceImage,
                     frames: {
-                        max: 18,
-                        hold: 1
+                        max: 4,
+                        hold: 3
                     },
                     animate: true
                 })
@@ -317,10 +335,10 @@ class Summon extends Sprite {
                     onComplete: () => {
                         // ENEMY GOT IT 
                         // audio.firebalHit.play()
-                        gsap.to(this.position, {
+                        gsap.to(comboslice.position, {
                             x: this.position.x,
                             y: this.position.y,
-                            duration: 10
+                            duration: 3
                         })
                         gsap.to(healthBar, {
                             width: recipient.health + '%'
@@ -345,6 +363,51 @@ class Summon extends Sprite {
                 })
 
                 break;
+
+            // --------------------------------------------- ATTACK 4 ---------------------------------------------------- //
+
+
+            case "Cure":
+                // audio.initFireBall.play()
+                const healingImage = new Image();
+                healingImage.src = this.image.src
+
+                const healing = new Sprite({
+                    position: {
+                        x: this.position.x,
+                        y: this.position.y
+                    },
+                    image: healingImage,
+                    frames: {
+                        max: 4,
+                        hold: 3
+                    },
+                    animate: true
+                })
+
+                renderedSprites.splice(1, 0, healing) // send the attack to the queue
+
+                gsap.to(this, {
+                    opacity: 0,
+
+                    onComplete: () => {
+                        gsap.to(healthBar, {
+                            width: this.health + '%'
+
+                        })
+                        gsap.to(this, {
+                            opacity: 1
+                        })
+
+                        renderedSprites.splice(1, 1) // removes from the array that is been animated the last element that was passed inside of it (the fireball)
+                    }
+
+
+                })
+                return this.health - life
+
+
+
         }
 
 

@@ -14,16 +14,15 @@ body {
 
 canvas {
     width: 100%;
+    border-radius: 20px;
 
 }
+
 
 
 h1 {
     margin: 0px;
-    font-size: 14px;
 }
-
-
 
 
 #topDiv {
@@ -43,7 +42,7 @@ h1 {
     opacity: 0;
     pointer-events: none;
     z-index: 10;
-    /*make this screnn that do trasntions the closer to us*/
+    border-radius: 20px;
 }
 
 
@@ -54,13 +53,17 @@ h1 {
     top: 0px;
     left: 0px;
     padding: 0px;
-    background-color: white;
+    background-color: rgb(174, 172, 172);
     display: none;
+    border-radius: 20px;
+
 }
 
 #mainTitle {
     text-align: center;
     font-size: 60px;
+    margin-top: 50px;
+    margin-bottom: 40px;
 }
 
 #prologueText {
@@ -128,29 +131,48 @@ label {
 
 }
 
+
+.summonInfo {
+    height: 10px;
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+}
+
+.currentLevel {
+    margin: 0px;
+    font-size: 12px;
+
+
+}
+
+
+#interfaceSelection {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: none;
+    width: 800px;
+    height: 80px;
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    border: 2px black;
+    border-radius: 20px;
+    border-style: outset;
+}
+
 .whatAttack {
     border: 0;
-    background-color: white;
+    background-color: transparent;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 20px;
 }
 
 .whatAttack:hover {
     background-color: lightblue;
 }
-
-#interfaceSelection {
-    display: flex;
-    background-color: white;
-    width: 200px;
-    /* height: 120px; */
-    position: absolute;
-    top: 5px;
-    /* left: 5px; */
-    right: 5px;
-    border: 1px black solid;
-}
-
 
 
 #attacksBox {
@@ -164,8 +186,12 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 1px black dashed;
+    padding-left: 20px;
+    text-align: center;
+}
 
+#attackType {
+    font-size: 20px;
 }
 
 
@@ -173,48 +199,68 @@ label {
 
 #statusInfoBad {
     background-color: white;
-    width: 200px;
-    /* height: 100px; */
+    width: 160px;
+    height: 20px;
     position: absolute;
     bottom: 300px;
     left: 100px;
-    border: 1px black solid;
-    padding: 2;
+    border: 2px black;
+    border-style: outset;
+    padding: 2px;
+    border-radius: 5px;
+    opacity: 0.5;
 }
 
 
 #statusInfoGood {
     background-color: white;
-    width: 200px;
-    /* height: 100px; */
+    width: 160px;
+    height: 27px;
     position: absolute;
     bottom: 300px;
-    right: 100px;
-    border: 1px black solid;
-    padding: 2pxpx;
+    right: 120px;
+    border: 2px black;
+    border-style: outset;
+    padding: 2px;
+    border-radius: 5px;
+    opacity: 0.5;
+
+
 }
 
 
 .name {
-    font-size: 16px;
+    font-size: 10px;
+    margin-left: 5px;
 }
 
 .health {
     position: relative;
+    width: 96%;
+    margin-left: 2%;
 }
 
-.health-damage {
+#statusInfoGood .health-damage {
+    border-radius: 20px;
     height: 5px;
     background-color: #ccc;
-    margin-top: 10px;
+    margin-top: 3px;
+}
+
+
+#statusInfoBad .health-damage {
+    border-radius: 20px;
+    height: 5px;
+    background-color: #ccc;
+    margin-top: 2px;
 }
 
 .health-full {
+    border-radius: 20px;
     height: 5px;
     background-color: green;
-    /* margin-top: 10px; */
     position: absolute;
-    top: 0px;
+    top: 0;
     left: 0;
     right: 0;
 }
@@ -224,11 +270,16 @@ label {
 
 .level {
     position: relative;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 1px;
 }
 
 
 
+
 .default-lv {
+    border-radius: 20px;
     height: 5px;
     background-color: #ccc;
 
@@ -236,14 +287,12 @@ label {
 
 
 .lv-increase {
+    border-radius: 20px;
     height: 5px;
     background-color: blue;
-    /* margin-top: 10px; */
     position: absolute;
     top: 0;
-    /*Put the green bar */
     left: 0;
-    /* right: 0; */
 }
 
 
@@ -254,10 +303,218 @@ label {
     right: 0;
     left: 0;
     background-color: white;
-    padding: 12px;
+    border-radius: 20px;
+    opacity: 0.5;
     display: none;
     cursor: pointer;
-    /*make the cursour a poiter */
+    padding-left: 10px;
+    padding: 25px;
+    font-size: 20px;
 }
 
 
+
+
+@media (min-width: 350px) and (max-width: 750px) {
+
+    #interfaceSelection {
+        display: flex;
+        flex-direction: row-reverse;
+        background-color: none;
+        width: 300px;
+        height: 40px;
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+        border: 2px black;
+        border-radius: 20px;
+        border-style: outset;
+    }
+
+
+
+
+    #statusInfoGood {
+        background-color: white;
+        width: 100px;
+        height: 14px;
+        position: absolute;
+        bottom: 110px;
+        right: 20px;
+        border: 2px black;
+        border-style: outset;
+        padding: 2px;
+        border-radius: 5px;
+        opacity: 0.5;
+    }
+
+
+    #statusInfoBad {
+        background-color: white;
+        width: 100px;
+        height: 10px;
+        position: absolute;
+        bottom: 110px;
+        left: 10px;
+        border: 2px black;
+        border-style: outset;
+        padding: 2px;
+        border-radius: 5px;
+        opacity: 0.5;
+    }
+
+
+    .summonInfo {
+        height: 6px;
+        width: 88px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0px;
+    }
+
+    .name {
+        font-size: 5px;
+        margin-left: 5px;
+    }
+
+    .currentLevel {
+        margin: 0px;
+        font-size: 7px;
+    }
+
+    #statusInfoGood .health-damage {
+        border-radius: 20px;
+        height: 2px;
+        background-color: #ccc;
+        margin-top: 2px;
+    }
+
+    #statusInfoBad .health-damage {
+        border-radius: 20px;
+        height: 2px;
+        background-color: #ccc;
+        margin-top: 2px;
+    }
+
+    .health-full {
+        border-radius: 20px;
+        height: 2px;
+        background-color: green;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+
+    .level {
+        position: relative;
+        width: 96%;
+        margin-left: 2%;
+        margin-top: 1px;
+    }
+
+
+
+
+    .default-lv {
+        border-radius: 20px;
+        height: 2px;
+        background-color: #ccc;
+
+    }
+
+
+    .lv-increase {
+        border-radius: 20px;
+        height: 2px;
+        background-color: blue;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+
+    .whatAttack {
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 7px;
+        border-radius: 20px;
+    }
+
+    #attackType {
+        font-size: 8px;
+    }
+
+    #dialgueBox {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        border-radius: 20px;
+        opacity: 0.5;
+        display: none;
+        cursor: pointer;
+        padding-left: 10px;
+        padding: 13px;
+        font-size: 10px;
+    }
+}
+
+
+@media (min-width: 700px) and (max-width: 1000px) {
+    #interfaceSelection {
+        display: flex;
+        flex-direction: row-reverse;
+        background-color: none;
+        width: 620px;
+        height: 98px;
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+        border: 2px black;
+        border-radius: 20px;
+        border-style: outset;
+    }
+
+
+    #statusInfoBad {
+        background-color: white;
+        width: 180px;
+        height: 23px;
+        position: absolute;
+        bottom: 245px;
+        left: 60px;
+        border: 2px black;
+        border-style: outset;
+        padding: 2px;
+        border-radius: 5px;
+        opacity: 0.5;
+    }
+
+    .summonInfo {
+        height: 14px;
+        width: 160px;
+        display: flex;
+        justify-content: space-between;
+        margin: 0px;
+    }
+
+    #statusInfoGood {
+        background-color: white;
+        width: 180px;
+        height: 30px;
+        position: absolute;
+        bottom: 240px;
+        right: 90px;
+        border: 2px black;
+        border-style: outset;
+        padding: 2px;
+        border-radius: 5px;
+        opacity: 0.5;
+        }
+
+}

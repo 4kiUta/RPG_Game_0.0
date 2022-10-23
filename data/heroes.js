@@ -25,6 +25,7 @@ player2LeftImage.src = "./img/heroes/liLeft.png"
 
 const heroes = {
     Al: {
+        name: "Al",
         position: {
             x: 1024 / 2 - (192 / 3) / 2, // location of place in x
             y: 576 / 2 - 68 / 2
@@ -40,10 +41,11 @@ const heroes = {
             right: playerRightImage,
             left: playerLeftImage
         },
-        velocity : 3
+        velocity: 3
     },
 
     Li: {
+        name: "Li",
         position: {
             x: 1024 / 2 - (192 / 3) / 2, // location of place in x
             y: 576 / 2 - 68 / 2
@@ -58,8 +60,8 @@ const heroes = {
             down: player2DownImage,
             right: player2RightImage,
             left: player2LeftImage
-        }, 
-        velocity : 5
+        },
+        velocity: 5
 
     }
 }
