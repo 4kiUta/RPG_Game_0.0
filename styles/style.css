@@ -561,6 +561,22 @@ label {
 }
 
 @media (min-width: 800px) and (max-width: 1000px) {
+
+
+    #interfaceSelection {
+        display: flex;
+        flex-direction: row-reverse;
+        background-color: none;
+        width: 620px;
+        height: 98px;
+        position: absolute;
+        bottom: 20px;
+        right: 10px;
+        border: 2px black;
+        border-radius: 20px;
+        border-style: outset;
+    }
+    
     #statusInfoGood {
         background-color: white;
         width: 180px;
