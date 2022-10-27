@@ -229,7 +229,7 @@ class Summon extends Sprite {
         switch (attack.name) {
 
 
-            case "Tackle":
+            case "Punch":
                 const timeLine = gsap.timeline()
 
                 let movementDistance = - 20;
@@ -244,7 +244,7 @@ class Summon extends Sprite {
                     duration: 0.1,
                     onComplete: () => { // make it an arrow function to use this.heatlt 
                         // WHERE ENEMY GOTS HIT 
-                        // audio.tackleHit.play()
+                        audio.tackleHit.play()
                         gsap.to(healthBar, {
                             width: recipient.health + '%'
                         })
@@ -272,7 +272,7 @@ class Summon extends Sprite {
             // --------------------------------------------- ATTACK 2 ---------------------------------------------------- //
 
             case "Fireball":
-                // audio.initFireBall.play()
+                audio.initFireBall.play()
                 const firaballImage = new Image();
                 firaballImage.src = "./img/attacks/fireball.png"
                 const fireball = new Sprite({
@@ -297,7 +297,7 @@ class Summon extends Sprite {
                     y: recipient.position.y,
                     onComplete: () => {
                         // ENEMY GOT IT 
-                        // audio.firebalHit.play()
+                        audio.firebalHit.play()
                         gsap.to(healthBar, {
                             width: recipient.health + '%'
                         })
@@ -348,8 +348,7 @@ class Summon extends Sprite {
                     opacity: 0,
 
                     onComplete: () => {
-                        // ENEMY GOT IT 
-                        // audio.firebalHit.play()
+                        audio.tackleHit.play() // Change to a sword sound!!! 
                         gsap.to(comboslice.position, {
                             x: this.position.x,
                             y: this.position.y,
@@ -383,7 +382,6 @@ class Summon extends Sprite {
 
 
             case "Cure":
-                // audio.initFireBall.play()
                 const healingImage = new Image();
                 healingImage.src = this.image.src
 
@@ -404,7 +402,7 @@ class Summon extends Sprite {
 
                 gsap.to(this, {
                     opacity: 0,
-                    duration: 3,
+                    duration: 1,
 
                     onComplete: () => {
                         gsap.to(healthBar, {
@@ -422,6 +420,107 @@ class Summon extends Sprite {
                 })
 
                 break;
+
+
+
+            // --------------------------------------------- ATTACK 5 ---------------------------------------------------- //
+
+            case "Bomb":
+                // audio.initFireBall.play()
+                const bombImage = new Image();
+                bombImage.src = "./img/attacks/bombSprite.png"
+                const bomb = new Sprite({
+                    position: {
+                        x: this.position.x,
+                        y: this.position.y - 50
+                    },
+                    image: bombImage,
+                    frames: {
+                        max: 19,
+                        hold: 2
+                    },
+                    animate: true,
+
+                })
+
+                renderedSprites.splice(1, 0, bomb) // put the fireball 
+                gsap.to(bomb.position, {
+                    x: recipient.position.x + 20,
+                    y: recipient.position.y,
+                    duration: 0.5,
+                    onComplete: () => {
+                        // ENEMY GOT IT 
+                        gsap.to(healthBar, {
+                            width: recipient.health + '%'
+                        })
+                        gsap.to(recipient.position, {
+                            x: recipient.position.x + 30,
+                            yoyo: true,
+                            repeat: 5,
+                            duration: 0.01
+                        })
+                        gsap.to(recipient, {
+                            opacity: 0,
+                            repeat: 5,
+                            yoyo: true,
+                            duration: 0.1 // to where, how long will it take
+                        })
+                        renderedSprites.splice(1, 1) // removes from the array that is been animated the last element that was passed inside of it (the fireball)
+                    }
+                })
+
+                break;
+
+                case "Sword Bomb":
+                    // audio.initFireBall.play()
+                    const swordBombImage = new Image();
+                    swordBombImage.src = "./img/attacks/swordsprite.png"
+                    const sword = new Sprite({
+                        position: {
+                            x: this.position.x,
+                            y: this.position.y - 50
+                        },
+                        image: swordBombImage,
+                        frames: {
+                            max: 19,
+                            hold: 2
+                        },
+                        animate: true,
+    
+                    })
+    
+                    renderedSprites.splice(1, 0, sword) // put the fireball 
+                    gsap.to(sword.position, {
+                        x: recipient.position.x + 20,
+                        y: recipient.position.y,
+                        duration: 0.5,
+                        onComplete: () => {
+                            // ENEMY GOT IT 
+                            gsap.to(healthBar, {
+                                width: recipient.health + '%'
+                            })
+                            gsap.to(recipient.position, {
+                                x: recipient.position.x + 30,
+                                yoyo: true,
+                                repeat: 5,
+                                duration: 0.01
+                            })
+                            gsap.to(recipient, {
+                                opacity: 0,
+                                repeat: 5,
+                                yoyo: true,
+                                duration: 0.1 // to where, how long will it take
+                            })
+                            renderedSprites.splice(1, 1) // removes from the array that is been animated the last element that was passed inside of it (the fireball)
+                        }
+                    })
+    
+                    break;
+                    
+    
+            
+                
+
         }
 
 

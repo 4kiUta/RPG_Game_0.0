@@ -4,7 +4,7 @@ class RedTile {
     static height = 48
     constructor({ position }) {
         this.position = position;
-        this.width = 12 * 4
+        this.width = 12 * 4 // zooming 4 times
         this.height = 12 * 4
 
         // added by me !
@@ -17,7 +17,7 @@ class RedTile {
     }
 
     draw() {
-        c.fillStyle = 'rgba(255,0,0,0)';
+        c.fillStyle = 'rgba(255,0,0,0.5)';
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 

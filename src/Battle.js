@@ -16,7 +16,7 @@ const battleBackground = new Sprite({
 
 const ourMonster = new Summon(summons.RedHood)
 
-let a, b;
+let one, two, three, forth, five;
 let enemyMoster;
 let renderedSprites;
 let queue = [];
@@ -29,11 +29,19 @@ function initBattle() {
     // make a copy of the spown monster
     const monsterOne = JSON.parse(JSON.stringify(summons.Emby2))
     const monsterTwo = JSON.parse(JSON.stringify(summons.Draggle))
+    const monsterThree = JSON.parse(JSON.stringify(summons.FlyingEye))
+    const monsterFour = JSON.parse(JSON.stringify(summons.Goblin))
+    const monsterFive = JSON.parse(JSON.stringify(summons.Skeleton))
 
-    a = new Summon(monsterOne)
-    b = new Summon(monsterTwo)
 
-    const monsterColection = [b, a]
+
+    one = new Summon(monsterOne)
+    two = new Summon(monsterTwo)
+    three = new Summon(monsterThree)
+    forth = new Summon(monsterFour)
+    five = new Summon(monsterFive)
+
+    const monsterColection = [three, forth, five]
     const enemyMoster = monsterColection[Math.floor(Math.random() * monsterColection.length)]
 
     console.log(enemyMoster.position.y)
@@ -55,6 +63,7 @@ function initBattle() {
 
 
     document.querySelector("#statusInfoBad .name").innerHTML = enemyMoster.name;
+    document.querySelector("#statusInfoGood .name").innerHTML = ourMonster.name;
 
     ourMonster.attacks.forEach((attack) => {
         const button = document.createElement("button");
@@ -166,7 +175,7 @@ function initBattle() {
                                 opacity: 0
                             })
                             battle.initiated = false
-                            // audio.Map.play()
+                            audio.Map.play()
                         }
                     })
                 })
@@ -210,21 +219,26 @@ function initBattle() {
                     queue.push(() => {
                         ourMonster.faint()
 
+                        const text = document.createElement("h1");
+                        text.innerHTML = "GAME OVER"
+                        text.style.cssText = "color: white; text-align: center;font-size: 60px; margin-top:20%"
+                        document.querySelector("#overlappingDiv").append(text);
+
                         // fade back to black 
                         gsap.to("#overlappingDiv", {
                             opacity: 1,
                             onComplete: () => {
                                 window.cancelAnimationFrame(battleAnimationId)
-                                animate()
-                                document.querySelector("#userInterface").style.display = 'none'
-                                document.querySelector("#attackInfo").style.cssText = 'display:flex;'
-                                document.querySelector("#attacksBox").style.cssText = 'display:grid;'
-                                gsap.to("#overlappingDiv", {
-                                    opacity: 0
-                                })
-
+                                // animate()
+                                // document.querySelector("#userInterface").style.display = 'none'
+                                // document.querySelector("#attackInfo").style.cssText = 'display:flex;'
+                                // document.querySelector("#attacksBox").style.cssText = 'display:grid;'
+                                // gsap.to("#overlappingDiv", {
+                                //     opacity: 0
+                                // })
 
                                 battle.initiated = false
+                                audio.battle.stop()
                                 // audio.Map.play()
                             }
                         })

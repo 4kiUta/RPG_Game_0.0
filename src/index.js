@@ -15,13 +15,13 @@ const c = canvas.getContext('2d');
 // ----------------------- DRAW GAME CONSTANTS  ------------------------- //
 
 const offset = {
-    x: -929,
-    y: -680
+    x: -6400,
+    y: -900
 }
 
 // ------- MAP ------ //
 const mapImage = new Image();
-mapImage.src = "./img/Pokemon_Style_Game_Map2.png"
+mapImage.src = "./img/my_map.png"
 
 const map = new Sprite({
     position: {
@@ -33,7 +33,7 @@ const map = new Sprite({
 
 // ------- ForeGround ------ //
 const foregroundImage = new Image();
-foregroundImage.src = "./img/foregrounds2.png";
+foregroundImage.src = "./img/foregrounds.png";
 
 const foreground = new Sprite({
     position: {
@@ -84,7 +84,7 @@ function startgame() {
             const char = e.currentTarget.innerHTML;
             player = new Sprite(heroes[char]);
 
-            player.draw()
+            // player.draw() 
             document.querySelector('#playerSelection').style.display = 'none'
 
         })
@@ -93,13 +93,13 @@ function startgame() {
 
 // ----------------------- RedTileS 70 tiles per row  ------------------------- //
 const RedTilesMap = []; // RedTiles array in 2d
-for (let i = 0; i < collisions.length; i += 70) {
-    RedTilesMap.push(collisions.slice(i, 70 + i));
+for (let i = 0; i < collisions.length; i += 170) {
+    RedTilesMap.push(collisions.slice(i, 170 + i));
 }
 const boundaries = []
 RedTilesMap.forEach((row, yi) => {
     row.forEach((symbol, xi) => {
-        if (symbol === 1025) { // only draw boundaries where we have them in the map
+        if (symbol === 6938) { // only draw boundaries where we have them in the map
             boundaries.push(new RedTile({
                 position: {
                     x: xi * RedTile.width + offset.x,
@@ -114,14 +114,14 @@ RedTilesMap.forEach((row, yi) => {
 // ----------------------- BATTLE LAYERS 70 tiles per row ------------------------- //
 
 const battleZonesMap = []; // battleground array in 2d
-for (let i = 0; i < battleZonesData.length; i += 70) {
-    battleZonesMap.push(battleZonesData.slice(i, 70 + i));
+for (let i = 0; i < battleZonesData.length; i += 170) {
+    battleZonesMap.push(battleZonesData.slice(i, 170 + i));
 }
 
 const battleZones = []
 battleZonesMap.forEach((row, yi) => {
     row.forEach((symbol, xi) => {
-        if (symbol === 1025) { // only draw boundaries where we have them in the map
+        if (symbol === 6938) { // only draw boundaries where we have them in the map
             battleZones.push(new RedTile({
                 position: {
                     x: xi * RedTile.width + offset.x,
@@ -152,8 +152,8 @@ const battle = {
 
 
 // ----------------------- ANIMATION ------------------------- //
+let movables = [map, ...boundaries, foreground, ...battleZones];
 
-const movables = [map, ...boundaries, foreground, ...battleZones];
 function animate() {
     const animationId = window.requestAnimationFrame(animate)
 
@@ -200,7 +200,7 @@ function animate() {
                     rect1: player,
                     rect2: battleZone
                 }) && overlappingArea > (player.width * player.height) / 2 // force the player to be more than half inside the fighting area
-                    && Math.random() < 0.1  // only 1% of the time it activates a battle 
+                    && Math.random() < 0.08  // only 1% of the time it activates a battle 
                 ) {
 
 
@@ -208,10 +208,9 @@ function animate() {
                     window.cancelAnimationFrame(animationId); // stop the animation
 
 
-                    // console.log("BATTLE START HERE!!! ");
-                    // audio.Map.stop() // stop the background music
-                    // audio.initBattle.play() // start the music for battle start 
-                    // audio.battle.play() // keep the music for the battle rooling !!
+                    audio.Map.stop() // stop the background music
+                    audio.initBattle.play() // start the music for battle start 
+                    audio.battle.play() // keep the music for the battle rooling !!
 
                     battle.initiated = true
                     gsap.to('#overlappingDiv', {
@@ -535,12 +534,12 @@ addEventListener("click", () => {
     if (!clicked) {
         document.querySelector('#playerSelection').style.display = 'block'
         startgame()
+        audio.Map.play()
         animate()
         clicked = true;
 
     }
 })
-
 
 
 // initBattle()

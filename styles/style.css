@@ -10,6 +10,7 @@ body {
     justify-content: center;
     background-color: black;
     align-items: center;
+    font-family: 'Cinzel', serif;
 }
 
 canvas {
@@ -561,10 +562,13 @@ label {
 }
 
 @media (min-width: 800px) and (max-width: 1100px) {
+
+
     canvas {
-        width: 765px;
-        height: 360px;
+        width: 780px;
+        height: 365px;
     }
+
 
 
     #interfaceSelection {
@@ -581,13 +585,47 @@ label {
         border-style: outset;
     }
 
+    .select {
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+        margin: 20px;
+        margin-top: 20px;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        height: 100px;
+        justify-content: space-around;
+    }
+
+    #choosePlayer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30%;
+    }
+
+    .image-character-one {
+        width: 77px;
+        height: 75px;
+        object-fit: none;
+        transform: scale(1);
+    }
+
+    .image-character-two{
+        width: 77px;
+        height: 75px;
+        object-fit: none;
+        transform: scale(1);
+    }
+
     #statusInfoGood {
 
         background-color: white;
         width: 180px;
         height: 23px;
         position: absolute;
-        bottom: 185px;
+        bottom: 190px;
         right: 60px;
         border: 2px black;
         border-style: outset;
@@ -602,7 +640,7 @@ label {
         width: 180px;
         height: 23px;
         position: absolute;
-        bottom: 185px;
+        bottom: 190px;
         left: 60px;
         border: 2px black;
         border-style: outset;
@@ -652,6 +690,7 @@ label {
         background-color: #ccc;
         margin-top: 3px;
     }
+
     .summonInfo {
         height: 10px;
         width: 165px;
@@ -673,5 +712,21 @@ label {
         position: absolute;
         top: 0;
         left: 0;
+    }
+
+    #dialgueBox {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: white;
+        border-radius: 20px;
+        opacity: 0.5;
+        display: none;
+        cursor: pointer;
+        padding-left: 10px;
+        padding: 19px;
+        font-size: 13px;
     }
 }
