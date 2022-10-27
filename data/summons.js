@@ -17,7 +17,7 @@ const summons = {
         animate: true,
         isEnemy: true,
         name: "Skeleton",
-        attacks: [attacks.Bomb, attacks.swordBomb], // attacks for this character ...
+        attacks: [attacks.Punch, attacks.swordBomb], // attacks for this character ...
         experience: 100,
         level: 5
 
@@ -39,7 +39,7 @@ const summons = {
         animate: true,
         isEnemy: true,
         name: "Goblin",
-        attacks: [attacks.Bomb], // attacks for this character ...
+        attacks: [attacks.Bomb, attacks.Punch], // attacks for this character ...
         experience: 100,
         level: 5
 
@@ -148,7 +148,7 @@ const summons = {
         animate: true,
         isEnemy: false,
         name: "Red Hood",
-        attacks: [attacks.ComboSlice, attacks.Fireball], // attacks for this character ...
+        attacks: [attacks.ComboSlice, attacks.Fireball, attacks.Punch], // attacks for this character ...
         experience: 0,
         level: 1,
     }

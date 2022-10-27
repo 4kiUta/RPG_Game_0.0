@@ -41,7 +41,7 @@ const attacks = {
 
     Bomb: {
         name: 'Bomb',
-        damage: 50,
+        damage: 40,
         restore: 0,
         type: 'Fire',
         color: 'rgb(228,39,39)',

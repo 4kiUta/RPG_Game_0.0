@@ -482,7 +482,7 @@ class Summon extends Sprite {
                         },
                         image: swordBombImage,
                         frames: {
-                            max: 19,
+                            max: 8,
                             hold: 2
                         },
                         animate: true,
