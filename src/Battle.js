@@ -149,6 +149,7 @@ function initBattle() {
                                             width: extraExp,
                                             opacity: 1,
                                             duration: 2
+
                                         })
                                     }
                                 })
@@ -159,6 +160,7 @@ function initBattle() {
 
 
                 })
+
 
 
                 queue.push(() => {
@@ -175,6 +177,7 @@ function initBattle() {
                                 opacity: 0
                             })
                             battle.initiated = false
+                            audio.battle.stop() //
                             audio.Map.play()
                         }
                     })
@@ -238,6 +241,7 @@ function initBattle() {
                                 // })
 
                                 battle.initiated = false
+                                audio.battle.stop()
                                 audio.battle.stop()
                                 // audio.Map.play()
                             }
